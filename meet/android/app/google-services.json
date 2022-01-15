@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "134628531745",
+    "project_id": "meet-b5122",
+    "storage_bucket": "meet-b5122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134628531745:android:5a62abf68f512b0904cd60",
+        "android_client_info": {
+          "package_name": "com.zero.meet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134628531745-f9t32i7jvd59o1jk69u854pr1c49l7ve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zero.meet",
+            "certificate_hash": "7f388edf431b1233b67d6b391722796a6ca7cff7"
+          }
+        },
+        {
+          "client_id": "134628531745-lso79uph4lj5pgs38gtvuoshqmkr0goi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIRRtrGIae2R65bedHALbPqR7Sr-1Bq-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134628531745-lso79uph4lj5pgs38gtvuoshqmkr0goi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
