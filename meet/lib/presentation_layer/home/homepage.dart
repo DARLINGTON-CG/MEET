@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/business_logic/app_bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,19 +12,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final user = context.select((AppBloc bloc) => bloc.state.user);
+   
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('Michael, ID',style:  GoogleFonts.alegreya(color: Colors.black, fontSize: 19,fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        elevation: 0.0,
+        leading:IconButton(onPressed: (){}, icon:const Icon(Icons.api,color: Colors.black,)),
+        
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.notifications_outlined,color: Colors.black,),
             onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
           )
         ],
       ),
-      body:const Center(child: Text("Hello")));
+      body: Center(child: Text('No cards yet',style:  GoogleFonts.alegreya(color: Colors.black, fontSize: 19,fontWeight: FontWeight.bold),),
+      ));
   }
 }
