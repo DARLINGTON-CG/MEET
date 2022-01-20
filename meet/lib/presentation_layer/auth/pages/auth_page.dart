@@ -21,7 +21,7 @@ class AuthPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "MEET",
-          style: GoogleFonts.lobster(color: Colors.black, fontSize: 27),
+          style: GoogleFonts.lobster(color:const Color(0xFF0E1B19), fontSize: 27),
         ),
         centerTitle: true,
         elevation: 0.0,
@@ -65,7 +65,7 @@ class AuthPage extends StatelessWidget {
                       "Connect with your soulmate and live happily ever after, just like in the fairytales.",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lobster(
-                          color: Colors.black, fontSize: 20),
+                          color:const Color(0xFF0E1B19), fontSize: 18,letterSpacing: 1)
                     ),
                   ),
                   Builder(builder: (context) {
