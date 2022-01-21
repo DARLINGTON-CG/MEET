@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/business_logic/app_bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:meet/presentation_layer/home/widgets/swipe_cards.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,27 +11,124 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: AppBar(
-        title: Text('Michael, ID',style:  GoogleFonts.alegreya(color:const Color(0xFF231F20), fontSize: 19,fontWeight: FontWeight.bold),),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.location_on,
+              color: Colors.blue,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Michigan',
+              style: GoogleFonts.lobster(
+                  color: const Color(0xFF424B54), fontSize: 20),
+            ),
+            IconButton(
+                onPressed: () {},
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                disabledColor: Colors.grey,
+                icon: const Icon(
+                  Icons.expand_more_rounded,
+                  color: Color(0xFF0D5D56),
+                ))
+          ],
+        ),
         backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0.0,
-        leading:IconButton(onPressed: (){}, icon:  const Icon(
-                Icons.flutter_dash_sharp,
-                color: Colors.blue,
-              )),
-        
+        leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.grid_view_rounded,
+              color: Colors.black,
+            )),
         actions: <Widget>[
-          IconButton(
-            key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.notifications_outlined,color: Colors.black,),
-            onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
-          )
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.notifications_rounded,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.024,
+                left: MediaQuery.of(context).size.width * 0.038,
+                child: Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                      color: Colors.blue, shape: BoxShape.circle),
+                ),
+              )
+            ],
+          ),
         ],
       ),
-      body: Center(child: Text('No cards yet',style:  GoogleFonts.alegreya(color: Colors.black, fontSize: 19,fontWeight: FontWeight.bold),),
-      ));
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.65,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () {},
+            mini: true,
+            key: UniqueKey(),
+            backgroundColor: Colors.black,
+            child: const Icon(
+              Icons.close_rounded,
+              color: Colors.yellow,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          FloatingActionButton(
+            onPressed: () {},
+            key: UniqueKey(),
+            backgroundColor: Colors.black,
+            child: const Icon(
+              Icons.favorite,
+              color: Colors.red,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          FloatingActionButton(
+            onPressed: () {},
+            key: UniqueKey(),
+            backgroundColor: Colors.black,
+            mini: true,
+            child: const Icon(
+              Icons.redo_rounded,
+              color: Colors.blue,
+              size: 30,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
