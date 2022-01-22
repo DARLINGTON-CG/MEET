@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/business_logic/app_bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,29 +82,19 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       resizeToAvoidBottomInset: false,
-      bottomSheet: DraggableScrollableSheet(
-          minChildSize: 0.15,
-          initialChildSize: 0.15,
-          expand: false,
-          builder: (BuildContext context, ScrollController scrollController) {
-            return AnimatedBuilder(
-                animation: scrollController,
-                builder: (BuildContext context, Widget? child) {
-                  return Container(
-                     // color: Colors.blue,
-                      alignment: Alignment.centerLeft,
-                      child: Card(
-                        color: Colors.orange,
-                        child:Padding(
-                          padding:const EdgeInsets.all(10),
-                          child: Text("AB",style: GoogleFonts.poppins(
-                  color:  Colors.black,fontWeight: FontWeight.bold, fontSize: 20)),
-                        ),
-                        elevation: 8,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                      ));
-                });
-          }),
+      bottomSheet: Container(
+          height: MediaQuery.of(context).size.height * 0.10,
+          color: Colors.yellow,
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+          child: Center(
+              child: Container(
+            alignment: Alignment.center,
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
+          ))),
       body: Align(
         alignment: Alignment.topCenter,
         child: Container(
