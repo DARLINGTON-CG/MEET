@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/business_logic/app_bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet/presentation_layer/home/widgets/swipe_cards.dart';
+import 'package:meet/presentation_layer/settings/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,7 +46,10 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SettingsPage();
+                })),
             icon: const Icon(
               Icons.grid_view_rounded,
               color: Colors.black,
@@ -75,6 +79,31 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      resizeToAvoidBottomInset: false,
+      bottomSheet: DraggableScrollableSheet(
+          minChildSize: 0.15,
+          initialChildSize: 0.15,
+          expand: false,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return AnimatedBuilder(
+                animation: scrollController,
+                builder: (BuildContext context, Widget? child) {
+                  return Container(
+                     // color: Colors.blue,
+                      alignment: Alignment.centerLeft,
+                      child: Card(
+                        color: Colors.orange,
+                        child:Padding(
+                          padding:const EdgeInsets.all(10),
+                          child: Text("AB",style: GoogleFonts.poppins(
+                  color:  Colors.black,fontWeight: FontWeight.bold, fontSize: 20)),
+                        ),
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                      ));
+                });
+          }),
       body: Align(
         alignment: Alignment.topCenter,
         child: Container(
