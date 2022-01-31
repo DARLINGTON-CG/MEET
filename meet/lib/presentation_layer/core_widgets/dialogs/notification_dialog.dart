@@ -45,4 +45,5 @@ void notificationDialog(
       },
       transitionDuration: const Duration(milliseconds: 700),
       pageBuilder: (BuildContext context, anim1, anim2) => Container());
+
 }

@@ -7,7 +7,6 @@ import '../models/auth_model.dart';
 
 part 'auth_failures.dart';
 
-
 class AuthRepository {
   AuthRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
@@ -32,10 +31,8 @@ class AuthRepository {
     });
   }
 
-
-  LocalUser get currentUser => _cache.read<LocalUser>(key: userCacheKey) ?? LocalUser.empty;
-
-
+  LocalUser get currentUser =>
+      _cache.read<LocalUser>(key: userCacheKey) ?? LocalUser.empty;
 
   Future<void> logInWithGoogle() async {
     try {
@@ -63,6 +60,43 @@ class AuthRepository {
       ]);
     } catch (_) {
       throw LogOutError();
+    }
+  }
+
+
+  //Modification of deleting user account soon
+  Future<void> deleteUserAccount() async {
+    try {
+      late final AuthCredential credential;
+      final googleUser = await GoogleSignIn.standard().signIn();
+      final googleAuth = await googleUser!.authentication;
+      credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await FirebaseAuth.instance.currentUser!
+          .reauthenticateWithCredential(credential);
+
+      await FirebaseAuth.instance.currentUser!.delete();
+      // context.read<AppBloc>().add(AppLogoutRequested());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        // notificationDialog(
+        //     context: context,
+        //     notificationMessage: "Requires a recent login",
+        //     icon: const Icon(
+        //       Icons.cancel,
+        //       color: Colors.red,
+        //     ));
+      } else {
+        // notificationDialog(
+        //     context: context,
+        //     notificationMessage: "An error occured",
+        //     icon: const Icon(
+        //       Icons.cancel,
+        //       color: Colors.red,
+        //     ));
+      }
     }
   }
 }

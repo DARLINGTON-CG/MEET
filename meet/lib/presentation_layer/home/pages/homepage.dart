@@ -3,17 +3,23 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/business_logic/app_bloc/app_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meet/constants/constant_values.dart';
+import 'package:meet/presentation_layer/home/widgets/custom_navigation_drawer.dart';
+import 'package:meet/presentation_layer/home/widgets/navigation_drawer.dart';
 import 'package:meet/presentation_layer/home/widgets/swipe_cards.dart';
 import 'package:meet/presentation_layer/settings/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
-  static Page page() => const MaterialPage<void>(child: HomePage());
+  static Page page() => MaterialPage<void>(child: HomePage());
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,10 +53,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
         leading: IconButton(
-            onPressed: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return SettingsPage();
-                })),
+            onPressed: () =>  CustomDrawer.of(context)?.open(),
             icon: const Icon(
               Icons.grid_view_rounded,
               color: Colors.black,
@@ -80,21 +83,107 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: NavigationDrawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       resizeToAvoidBottomInset: false,
       bottomSheet: Container(
           height: MediaQuery.of(context).size.height * 0.10,
-          color: Colors.yellow,
+          color: Colors.transparent,
           margin:
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-          child: Center(
-              child: Container(
-            alignment: Alignment.center,
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          ))),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            FloatingActionButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
+                  content: Text("No internet connection",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lobster(
+                          fontSize: 16, color: Colors.white)),
+                  leading: const Icon(Icons.warning_amber_rounded,
+                      color: Colors.red),
+                  backgroundColor: Colors.black,
+                  elevation: 11,
+                  actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      ),
+                      onPressed: () => ScaffoldMessenger.of(context)
+                          .hideCurrentMaterialBanner(),
+                    )
+                  ],
+                ));
+
+                Future.delayed(const Duration(seconds: 3)).then((_) =>
+                    ScaffoldMessenger.of(context).hideCurrentMaterialBanner());
+              },
+              mini: true,
+              key: UniqueKey(),
+              elevation: 10,
+              backgroundColor: Colors.black,
+              child: const Center(
+                child: Icon(
+                  Icons.send_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {},
+              mini: true,
+              key: UniqueKey(),
+              elevation: 10,
+              backgroundColor: Colors.red,
+              child: Center(
+                child: Text(
+                  'AB',
+                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {},
+              mini: true,
+              key: UniqueKey(),
+              elevation: 10,
+              backgroundColor: Colors.blue,
+              child: Center(
+                child: Text(
+                  'DO',
+                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {},
+              mini: true,
+              key: UniqueKey(),
+              elevation: 10,
+              backgroundColor: Colors.orange,
+              child: Center(
+                child: Text(
+                  'PE',
+                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {},
+              mini: true,
+              key: UniqueKey(),
+              elevation: 10,
+              backgroundColor: Colors.deepPurpleAccent,
+              child: Center(
+                child: Text(
+                  'OO',
+                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+                ),
+              ),
+            ),
+          ])),
       body: Align(
         alignment: Alignment.topCenter,
         child: Container(
