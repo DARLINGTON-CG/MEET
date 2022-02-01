@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meet/presentation_layer/home/widgets/swipe_cards.dart';
 import '../widgets/custom_navigation_drawer.dart';
-
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
         leading: IconButton(
-            onPressed: () =>  CustomDrawer.of(context)?.open(),
+            onPressed: () => CustomDrawer.of(context)?.open(),
             icon: const Icon(
               Icons.grid_view_rounded,
               color: Colors.black,
@@ -77,122 +77,144 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-     
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       resizeToAvoidBottomInset: false,
-      bottomSheet: Container(
-          height: MediaQuery.of(context).size.height * 0.10,
-          color: Colors.transparent,
-          margin:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            FloatingActionButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
-                  content: Text("No internet connection",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lobster(
-                          fontSize: 16, color: Colors.white)),
-                  leading: const Icon(Icons.warning_amber_rounded,
-                      color: Colors.red),
-                  backgroundColor: Colors.black,
-                  elevation: 11,
-                  actions: <Widget>[
-                    IconButton(
-                      icon: const Icon(
-                        Icons.close,
-                        color: Colors.white,
-                      ),
-                      onPressed: () => ScaffoldMessenger.of(context)
-                          .hideCurrentMaterialBanner(),
-                    )
-                  ],
-                ));
+      // bottomSheet: Container(
+      //     height: MediaQuery.of(context).size.height * 0.10,
+          
+      //     color: Colors.transparent,
+      //     margin:
+      //         EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+      //     child:
+      //         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      //       FloatingActionButton(
+      //         onPressed: () {
+      //           ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
+      //             content: Text("No internet connection",
+      //                 textAlign: TextAlign.center,
+      //                 style: GoogleFonts.lobster(
+      //                     fontSize: 16, color: Colors.white)),
+      //             leading: const Icon(Icons.warning_amber_rounded,
+      //                 color: Colors.red),
+      //             backgroundColor: Colors.black,
+      //             elevation: 11,
+      //             actions: <Widget>[
+      //               IconButton(
+      //                 icon: const Icon(
+      //                   Icons.close,
+      //                   color: Colors.white,
+      //                 ),
+      //                 onPressed: () => ScaffoldMessenger.of(context)
+      //                     .hideCurrentMaterialBanner(),
+      //               )
+      //             ],
+      //           ));
 
-                Future.delayed(const Duration(seconds: 3)).then((_) =>
-                    ScaffoldMessenger.of(context).hideCurrentMaterialBanner());
-              },
-              mini: true,
-              key: UniqueKey(),
-              elevation: 10,
-              backgroundColor: Colors.black,
-              child: const Center(
-                child: Icon(
-                  Icons.send_rounded,
-                  color: Colors.white,
-                  size: 18,
-                ),
-              ),
+      //           Future.delayed(const Duration(seconds: 3)).then((_) =>
+      //               ScaffoldMessenger.of(context).hideCurrentMaterialBanner());
+      //         },
+      //         mini: true,
+      //         key: UniqueKey(),
+      //         elevation: 10,
+      //         backgroundColor: Colors.black,
+      //         child: const Center(
+      //           child: Icon(
+      //             Icons.send_rounded,
+      //             color: Colors.white,
+      //             size: 18,
+      //           ),
+      //         ),
+      //       ),
+      //       FloatingActionButton(
+      //         onPressed: () {},
+      //         mini: true,
+      //         key: UniqueKey(),
+      //         elevation: 10,
+      //         backgroundColor: Colors.red,
+      //         child: Center(
+      //           child: Text(
+      //             'AB',
+      //             style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+      //           ),
+      //         ),
+      //       ),
+      //       FloatingActionButton(
+      //         onPressed: () {},
+      //         mini: true,
+      //         key: UniqueKey(),
+      //         elevation: 10,
+      //         backgroundColor: Colors.blue,
+      //         child: Center(
+      //           child: Text(
+      //             'DO',
+      //             style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+      //           ),
+      //         ),
+      //       ),
+      //       FloatingActionButton(
+      //         onPressed: () {},
+      //         mini: true,
+      //         key: UniqueKey(),
+      //         elevation: 10,
+      //         backgroundColor: Colors.orange,
+      //         child: Center(
+      //           child: Text(
+      //             'PE',
+      //             style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+      //           ),
+      //         ),
+      //       ),
+      //       FloatingActionButton(
+      //         onPressed: () {},
+      //         mini: true,
+      //         key: UniqueKey(),
+      //         elevation: 10,
+      //         backgroundColor: Colors.deepPurpleAccent,
+      //         child: Center(
+      //           child: Text(
+      //             'OO',
+      //             style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
+      //           ),
+      //         ),
+      //       ),
+      //     ])),
+      body: Center(
+        child: SwipeCard(
+          swipeUp: true,
+          swipeDown: true,
+          orientation: AmassOrientation.top,
+          totalNum: 6,
+          stackNum: 3,
+          swipeEdge: 4.0,
+          maxWidth: MediaQuery.of(context).size.width * 0.9,
+          maxHeight: MediaQuery.of(context).size.height * 0.7,
+          minWidth: MediaQuery.of(context).size.width * 0.7,
+          minHeight: MediaQuery.of(context).size.height * 0.7,
+          cardBuilder: (context, index) => Container(
+            child: Center(child: Text(index.toString())),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.lightBlue
             ),
-            FloatingActionButton(
-              onPressed: () {},
-              mini: true,
-              key: UniqueKey(),
-              elevation: 10,
-              backgroundColor: Colors.red,
-              child: Center(
-                child: Text(
-                  'AB',
-                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
-                ),
-              ),
-            ),
-            FloatingActionButton(
-              onPressed: () {},
-              mini: true,
-              key: UniqueKey(),
-              elevation: 10,
-              backgroundColor: Colors.blue,
-              child: Center(
-                child: Text(
-                  'DO',
-                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
-                ),
-              ),
-            ),
-            FloatingActionButton(
-              onPressed: () {},
-              mini: true,
-              key: UniqueKey(),
-              elevation: 10,
-              backgroundColor: Colors.orange,
-              child: Center(
-                child: Text(
-                  'PE',
-                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
-                ),
-              ),
-            ),
-            FloatingActionButton(
-              onPressed: () {},
-              mini: true,
-              key: UniqueKey(),
-              elevation: 10,
-              backgroundColor: Colors.deepPurpleAccent,
-              child: Center(
-                child: Text(
-                  'OO',
-                  style: GoogleFonts.lobster(color: Colors.white, fontSize: 13),
-                ),
-              ),
-            ),
-          ])),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: Container(
-          margin:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.65,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(15),
+           
           ),
+          cardController: CardController(),
+          swipeUpdateCallback: (DragUpdateDetails details, Alignment align) {
+            /// Get swiping card's alignment
+            if (align.x < 0) {
+              //Card is LEFT swiping
+            } else if (align.x > 0) {
+              //Card is RIGHT swiping
+            }
+          },
+          swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
+            /// Get orientation & index of swiped card!
+          },
         ),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FloatingActionButton(
             onPressed: () {},
