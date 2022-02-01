@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meet/business_logic/app_bloc/app_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meet/constants/constant_values.dart';
-import 'package:meet/presentation_layer/home/widgets/custom_navigation_drawer.dart';
-import 'package:meet/presentation_layer/home/widgets/navigation_drawer.dart';
-import 'package:meet/presentation_layer/home/widgets/swipe_cards.dart';
-import 'package:meet/presentation_layer/settings/pages/settings_page.dart';
+import '../widgets/custom_navigation_drawer.dart';
+
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -83,7 +77,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: NavigationDrawer(),
+     
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       resizeToAvoidBottomInset: false,
       bottomSheet: Container(

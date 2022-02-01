@@ -1,14 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:meet/business_logic/connectivity_bloc/connectivity_cubit.dart';
-import 'package:meet/data_layer/repositories/auth_repository.dart';
-import 'package:meet/presentation_layer/theme/application_theme.dart';
 import 'package:flow_builder/flow_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+import 'data_layer/repositories/auth_repository.dart';
+import 'presentation_layer/theme/application_theme.dart';
 import 'business_logic/app_bloc/app_bloc.dart';
 import 'business_logic/app_bloc/app_bloc_observer.dart';
 import 'presentation_layer/route_management/app_routes.dart';
@@ -70,28 +67,3 @@ class AppView extends StatelessWidget {
     );
   }
 }
-
-// class App extends StatelessWidget {
-//   final AppRoutes applicationRoutes;
-//   final ThemeClass theme = ThemeClass(ThemeValue.dark);
-//   final InternetConnectionChecker connectivity;
-
-//   App({Key? key, required this.applicationRoutes, required this.connectivity})
-//       : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return MultiBlocProvider(
-//       providers: [
-//         BlocProvider<InternetCubit>(
-//             create: (context) =>
-//                 InternetCubit(internetConnection: connectivity))
-//       ],
-//       child: MaterialApp(
-//         title: 'Meet',
-//         theme: theme.darkTheme(),
-//         debugShowCheckedModeBanner: false,
-//         onGenerateRoute: applicationRoutes.onGenerateRoute,
-//       ),
-//     );
-//   }
-// }
