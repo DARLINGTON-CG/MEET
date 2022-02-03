@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meet/presentation_layer/home/pages/homepage.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:meet/presentation_layer/route_management/app_router.gr.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Widget child;
 
   const CustomDrawer({Key? key, required this.child}) : super(key: key);
 
- static Page page() => MaterialPage<void>(
+  static Page page() => MaterialPage<void>(
           child: CustomDrawer(
         child: HomePage(),
       ));
@@ -20,7 +22,6 @@ class CustomDrawer extends StatefulWidget {
 
 class CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
- 
   static const Duration toggleDuration = Duration(milliseconds: 250);
   static const double maxSlide = 225;
   static const double minDragStartEdge = 60;
@@ -141,104 +142,104 @@ class MyDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-          SizedBox(
-            height: 100,
-            child: DrawerHeader(
-                child: Row(
-              children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.blueGrey,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text('Michael Langdon',
-                    style: GoogleFonts.lobster(
-                      fontSize: 18,
+              SizedBox(
+                height: 100,
+                child: DrawerHeader(
+                    child: Row(
+                  children: [
+                    const CircleAvatar(
+                      backgroundColor: Colors.blueGrey,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text('Michael Langdon',
+                        style: GoogleFonts.lobster(
+                          fontSize: 18,
+                          color: Colors.blueGrey,
+                          //fontWeight: FontWeight.bold,
+                        )),
+                  ],
+                )),
+              ),
+              ListTile(
+                  title: Text(
+                    'PROFILE',
+                    style: GoogleFonts.alegreya(
+                      fontSize: 14,
                       color: Colors.blueGrey,
-                      //fontWeight: FontWeight.bold,
-                    )),
-              ],
-            )),
-          ),
-          ListTile(
-              title: Text(
-                'PROFILE',
-                style: GoogleFonts.alegreya(
-                  fontSize: 14,
-                  color: Colors.blueGrey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              leading: const Icon(
-                Icons.data_usage_sharp,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-          ListTile(
-              title: Text(
-                'SETTINGS',
-                style: GoogleFonts.alegreya(
-                  fontSize: 14,
-                  color: Colors.blueGrey,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              leading: const Icon(
-                Icons.build_circle_rounded,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-          ListTile(
-              title: Text(
-                'PURCHASES',
-                style: GoogleFonts.alegreya(
-                    fontSize: 14,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.bold),
-              ),
-              leading: const Icon(
-                Icons.shopping_bag,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-          ListTile(
-              title: Text(
-                'LIKES',
-                style: GoogleFonts.alegreya(
-                    fontSize: 14,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.bold),
-              ),
-              leading: const Icon(
-                Icons.favorite,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-               ListTile(
-              title: Text(
-                'HELP CENTER',
-                style: GoogleFonts.alegreya(
-                    fontSize: 14,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.bold),
-              ),
-              leading: const Icon(
-                Icons.help_rounded,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-        ],
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  leading: const Icon(
+                    Icons.data_usage_sharp,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    // Navigator.pop(context);
+                  }),
+              ListTile(
+                  title: Text(
+                    'SETTINGS',
+                    style: GoogleFonts.alegreya(
+                      fontSize: 14,
+                      color: Colors.blueGrey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  leading: const Icon(
+                    Icons.build_circle_rounded,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    context.pushRoute(SettingsPageRoute());
+                  }),
+              ListTile(
+                  title: Text(
+                    'PURCHASES',
+                    style: GoogleFonts.alegreya(
+                        fontSize: 14,
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  leading: const Icon(
+                    Icons.shopping_bag,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+              ListTile(
+                  title: Text(
+                    'LIKES',
+                    style: GoogleFonts.alegreya(
+                        fontSize: 14,
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  leading: const Icon(
+                    Icons.favorite,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+              ListTile(
+                  title: Text(
+                    'HELP CENTER',
+                    style: GoogleFonts.alegreya(
+                        fontSize: 14,
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  leading: const Icon(
+                    Icons.help_rounded,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+            ],
           ),
         ),
       ),

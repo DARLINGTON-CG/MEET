@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:meet/business_logic/auth_bloc/auth_cubit.dart';
 import 'package:meet/business_logic/connectivity_bloc/connectivity_cubit.dart';
 import 'package:meet/business_logic/connectivity_bloc/connectivity_state.dart';
 import 'package:meet/data_layer/repositories/auth_repository.dart';
+import 'package:meet/presentation_layer/home/pages/homepage.dart';
+import 'package:meet/presentation_layer/route_management/app_router.gr.dart';
 import '../widgets/sign_in_button.dart';
 import '../../core_widgets/dialogs/notification_dialog.dart';
 import 'package:formz/formz.dart';
@@ -21,7 +24,8 @@ class AuthPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "MEET",
-          style: GoogleFonts.lobster(color:const Color(0xFF0E1B19), fontSize: 27),
+          style:
+              GoogleFonts.lobster(color: const Color(0xFF0E1B19), fontSize: 27),
         ),
         centerTitle: true,
         elevation: 0.0,
@@ -44,6 +48,8 @@ class AuthPage extends StatelessWidget {
                     notificationMessage:
                         state.errorMessage ?? 'Authentication Failure',
                     icon: const Icon(Icons.cancel, color: Colors.red));
+              } else if (state.status.isSubmissionSuccess) {
+                context.replaceRoute(CustomDrawerRoute(child: HomePage()));
               }
             },
             child: SingleChildScrollView(
@@ -62,11 +68,12 @@ class AuthPage extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 25, right: 25, top: 2, bottom: 30),
                     child: Text(
-                      "Connect with your soulmate and live happily ever after, just like in the fairytales.",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lobster(
-                          color:const Color(0xFF0E1B19), fontSize: 18,letterSpacing: 1)
-                    ),
+                        "Connect with your soulmate and live happily ever after, just like in the fairytales.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lobster(
+                            color: const Color(0xFF0E1B19),
+                            fontSize: 18,
+                            letterSpacing: 1)),
                   ),
                   Builder(builder: (context) {
                     return LoginButton(func: () {
